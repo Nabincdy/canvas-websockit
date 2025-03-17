@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Dynamic Timer Components with Voice Recorder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rethink+Sans:wght@400..800&display=swap" rel="stylesheet" />
+  <!-- <link rel="stylesheet" href="style.css"> -->
+
+</head>
+
+<body>
+
+
+
+
+  <canvas id="metamodeCanvas"></canvas>
+  <script>
+      const canvas = document.getElementById("metamodeCanvas");
+      const ctx = canvas.getContext("2d");
+      let circles = [];
+
+      function resizeCanvas() {
+          canvas.width = window.innerWidth * 0.8;
+          canvas.height = window.innerHeight * 0.9;
+          drawUI();
+      }
+      window.addEventListener('resize', resizeCanvas);
+      resizeCanvas();
+
+      function drawUI() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          let centerX = canvas.width / 2;
+          let stepY = canvas.height / 5;
+          circles = [];
+
+          // Draw curved background
+          ctx.fillStyle = "#ccc";
+          ctx.beginPath();
+          ctx.moveTo(0, stepY);
+          ctx.quadraticCurveTo(centerX, -stepY / 2, canvas.width, stepY);
+          ctx.lineTo(canvas.width, 0);
+          ctx.lineTo(0, 0);
+          ctx.closePath();
+          ctx.fill();
+
+          function drawMinistry(x, y, text, id) {
+              ctx.fillStyle = "#007bff";
+              ctx.beginPath();
+              ctx.arc(x, y, 60, 0, Math.PI * 2);
+              ctx.fill();
+              ctx.strokeStyle = "#0056b3";
+              ctx.lineWidth = 4;
+              ctx.stroke();
+
+              ctx.fillStyle = "white";
+              ctx.font = "bold 16px Arial";
+              ctx.textAlign = "center";
+              ctx.fillText(text, x, y + 5);
+              circles.push({ x, y, radius: 60, text, id });
+          }
+
+          drawMinistry(centerX, stepY * 1.5, "Ministry Of Logic", "logic");
+          drawMinistry(centerX, stepY * 2.8, "Ministry Of Nature", "nature");
+          drawMinistry(centerX, stepY * 4, "Ministry Of Mind", "mind");
+
+          ctx.fillStyle = "black";
+          ctx.font = "14px Arial";
+          ctx.fillText("Basic Food", centerX, stepY * 4.3);
+          ctx.fillText("Smashing Room", centerX, stepY * 4.5);
+
+          // Sidebar text
+          ctx.fillText("Change Your Metamode", stepY * 0.5, stepY * 0.5);
+          let metaModes = ["Art", "Religion", "Philosophy", "Science", "Genuine Wisdom"];
+          metaModes.forEach((text, index) => {
+              ctx.fillText(`${index + 1}. ${text}`, stepY * 0.5, stepY * (0.7 + index * 0.2));
+          });
+          ctx.fillText("Cool background picture of metamode", stepY * 0.5, stepY * 2.5);
+
+          // Trending services
+          ctx.font = "italic 14px Arial";
+          ctx.fillText("Trending Services", canvas.width - stepY * 2, stepY * 4.5);
+          ctx.font = "14px Arial";
+          let trending = ["Senior Services", "LA Fire Services", "AI Unemployment"];
+          trending.forEach((text, index) => {
+              ctx.fillText(`${index + 1}, ${text}`, canvas.width - stepY * 2, stepY * (4.7 + index * 0.2));
+          });
+      }
+
+      canvas.addEventListener("click", function (event) {
+          const rect = canvas.getBoundingClientRect();
+          const mouseX = event.clientX - rect.left;
+          const mouseY = event.clientY - rect.top;
+
+          circles.forEach(circle => {
+              const distance = Math.sqrt((mouseX - circle.x) ** 2 + (mouseY - circle.y) ** 2);
+              if (distance <= circle.radius) {
+                  handleCircleClick(circle.id);
+              }
+          });
+      });
+
+      function handleCircleClick(id) {
+          switch (id) {
+              case "logic":
+                  document.body.style.backgroundColor = "#ffcc00"; // Change background color
+                  break;
+              case "nature":
+
+                  document.body.style.backgroundColor = "#ffcc30"; // Change background color
+                  break;
+              case "mind":
+                  document.body.style.backgroundColor = "red"; // Change background color
+
+                  break;
+              default:
+                  console.log("Unknown ministry clicked");
+          }
+      }
+  </script>
+
+
+
+
+
+ 
+  <script>
+    // const socket = new WebSocket("ws://localhost:8082");
+    const socket = new WebSocket("ws://69.197.142.130:8083");
+
+    socket.onopen = function () {
+      console.log("Connected to   WebSocket server");
+    };
+
+
+    socket.onmessage = function (event) {//RETURN FROM SERVER SWITCH STARTS HERE
+      const data = JSON.parse(event.data);
+
+      console.log("Received update:", data);
+
+
+
+      //Main Switch/Switch Main
+      switch (data.cmd) {//messages from server
+
+        case "logic":
+          console.log(data.msg);
+          break;
+        default:
+          console.log('Unrecognized command:', data.cmd);
+          break;
+
+      }//end MAIN SWITCH/SWITCH MAIN
+
+    };//end socket.message
+
+    /////////////////////////////////////////////////////////////////
+    let workerDispatch = (cmd, msg) => {
+      console.log("WorkerDispatch cmd:" + cmd);
+      switch (cmd) {
+        case 'getNewAWSCreds':
+          console.log("Getting workerDispatch awsCres");
+          //worker.postMessage({'cmd': 'getNewAWSCreds', 'msg': msg});
+          break;
+      }//end cmd 
+    };//end workerDispatch
+
+    socket.onclose = function () {
+      console.log("Disconnected from WebSocket server. Reconnecting...");
+      setTimeout(() => {
+        location.reload();
+      }, 2000);
+    };
+
+    socket.onerror = function (error) {
+      console.error("WebSocket Error:", error);
+    };
+
+
+    function setGlobalVariablesOnceDOMContentLoaded() {
+     
+    }//end setGlobalVariablesOnceDOMContentLoaded
+
+    function synchronizeScreenDraw() {
+     
+    };//end  synchronizeScreenDraw();
+
+    //********************************************************************
+
+
+    //MAIN Start Of Page Loading (the above createTimerComponent is called within AFTER the DOM loads) 
+    document.addEventListener("DOMContentLoaded", () => {
+
+      //Mark/Nabin, where you left off: comment out these const variables and put them in setGlobalVariableOnceDOMContentLoaded and call global versions of these from within the function and set them to the new DOM elements created
+      setGlobalVariablesOnceDOMContentLoaded();
+      synchronizeScreenDraw();
+     
+    }); ////end DOMContentLoaded
+
+
+
+  </script>
+</body>
+
+</html>
