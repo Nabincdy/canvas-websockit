@@ -75,17 +75,8 @@
       drawList(["1. Art", "2. Religion", "3. Philosophy", "4. Science", "5. Genuine Wisdom"], 40, 60);
 
       // Trending Services Section
-      // drawTextSection("Trending Services", canvas.width - 200, 700, 18);
-      // drawList(["1. Senior Services", "2. LA Fire Services", "3. AI Unemployment"], canvas.width - 200, 730);
-
-            // Determine screen size and adjust position of "Trending Services"
-            let isMobile = window.innerWidth <= 768;
-      let trendingX = canvas.width - 200;
-      let trendingY = isMobile ? 700 : 500;
-
-      // Trending Services Section
-      drawTextSection("Trending Services", trendingX, trendingY, 18);
-      drawList(["1. Senior Services", "2. LA Fire Services", "3. AI Unemployment"], trendingX, trendingY + 30);
+      drawTextSection("Trending Services", canvas.width - 240, 40, 18);
+      drawList(["1. Senior Services", "2. LA Fire Services", "3. AI Unemployment"], canvas.width - 240, 60);
     }
 
     // Drawing text section
