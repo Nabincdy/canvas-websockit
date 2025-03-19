@@ -5,34 +5,75 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Metamode Selector</title>
-  <style>
-    *{
-      margin: 0;
-    }
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      transition: background-color 0.3s ease-in-out;
-    }
-  </style>
 </head>
+<style>
+  * {
+    margin: 0;
+  }
+
+  body {
+    background-image: url('https://imgs.search.brave.com/WBu5jj4La8n-Qes1lV643mICywD_FCtJDX-XPW9-U88/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9kZWlo/NDN5bTUzd2lmLmNs/b3VkZnJvbnQubmV0/L2NsaW1iZXJzLXJl/YWNoaW5nLWV2ZXJl/c3Qtc3VtbWl0LW5l/cGFsLXNodXR0ZXJz/dG9ja18xNzcwMjI2/NDQ1LmpwZ185NWMx/ZWVlMjhhLmpwZw');
+    background-size: cover;
+    background-position: center;
+    transition: background-image 0.5s ease-in-out;
+  }
+
+  #slider-container {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.7);
+    padding: 10px;
+    border-radius: 10px;
+    z-index: 1000;
+    display: flex;
+    gap: 10px;
+  }
+</style>
 
 <body>
+  <div id="slider-container">
+    <button id="prev-bg">Previous</button>
+    <button id="next-bg">Next</button>
+  </div>
   <canvas id="metamodeCanvas"></canvas>
+  <!-- Firework GIF overlay -->
+  <div class="firework-overlay" id="fireworkOverlay"
+    style="position: absolute; top: 30%; left: 50%; transform: translate(-50%, -50%); display: none; z-index: 1000; background-repeat: no-repeat;">
+    <img src="https://cliply.co/wp-content/uploads/2021/09/CLIPLY_372109170_FREE_FIREWORKS_400.gif" alt="Firework"
+      style="width: 500px;" />
+  </div>
+
   <script>
     const canvas = document.getElementById("metamodeCanvas");
     const ctx = canvas.getContext("2d");
+    const logo = new Image();
+    logo.src = 'https://media.geeksforgeeks.org/gfg-gg-logo.svg'; // Use the URL of your logo here
     let circles = [];
     let activeCircle = null;
+    let mouseX = 0;
+    let mouseY = 0;
 
+    // Resize canvas to fit the screen size
     function resizeCanvas() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight * 0.9;
       drawUI();
     }
+
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
+    // Track mouse movement
+    canvas.addEventListener("mousemove", function (event) {
+      const rect = canvas.getBoundingClientRect();
+      mouseX = event.clientX - rect.left;
+      mouseY = event.clientY - rect.top;
+      drawUI();
+    });
+
+    // Draw the UI elements
     function drawUI() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       let centerX = canvas.width / 2;
@@ -41,6 +82,7 @@
 
       // Background color and drawing
       ctx.fillStyle = "#f0f0f0";
+
       ctx.beginPath();
       ctx.moveTo(0, stepY);
       ctx.quadraticCurveTo(centerX, -stepY / 2, canvas.width, stepY);
@@ -49,43 +91,37 @@
       ctx.closePath();
       ctx.fill();
 
-      // Draw Ministries
-      function drawMinistry(x, y, text, id) {
-        ctx.fillStyle = "#007bff";
-        ctx.beginPath();
-        ctx.arc(x, y, 60, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.strokeStyle = "#0056b3";
-        ctx.lineWidth = 4;
-        ctx.stroke();
-
-        ctx.fillStyle = "white";
-        ctx.font = "bold 14px Arial";
-        ctx.textAlign = "center";
-        ctx.fillText(text, x, y + 5);
-        circles.push({ x, y, radius: 60, text, id });
+      // Drawing Ministries with specific background colors
+      if (window.innerWidth <= 500) {
+        drawMinistry(centerX, stepY * 1.1, "Ministry Of Logic", "logic", "#ffcc00");  // Yellow for Logic
+        drawMinistry(centerX, stepY * 2.2, "Ministry Of Nature", "nature", "#4CAF50"); // Green for Nature
+        drawMinistry(centerX, stepY * 3.3, "Ministry Of Mind", "mind", "#FF5733");   // Red for Mind
+      } else {
+        drawMinistry(centerX, stepY * 1.5, "Ministry Of Logic", "logic", "#ffcc00");  // Yellow for Logic
+        drawMinistry(centerX, stepY * 2.9, "Ministry Of Nature", "nature", "#4CAF50"); // Green for Nature
+        drawMinistry(centerX, stepY * 4.3, "Ministry Of Mind", "mind", "#FF5733");   // Red for Mind
       }
-
-      drawMinistry(centerX, stepY * 1.5, "Ministry Of Logic", "logic");
-      drawMinistry(centerX, stepY * 2.8, "Ministry Of Nature", "nature");
-      drawMinistry(centerX, stepY * 4, "Ministry Of Mind", "mind");
 
       // Sidebar Section
       drawTextSection("Change Your Metamode", 20, 40, 18);
       drawList(["1. Art", "2. Religion", "3. Philosophy", "4. Science", "5. Genuine Wisdom"], 40, 60);
 
       // Trending Services Section
-      // drawTextSection("Trending Services", canvas.width - 200, 700, 18);
-      // drawList(["1. Senior Services", "2. LA Fire Services", "3. AI Unemployment"], canvas.width - 200, 730);
-
-            // Determine screen size and adjust position of "Trending Services"
-            let isMobile = window.innerWidth <= 768;
+      let isMobile = window.innerWidth <= 768;
       let trendingX = canvas.width - 200;
-      let trendingY = isMobile ? 700 : 500;
+      let trendingY = isMobile ? 660 : 500;
+
+      // Background for "Trending Services" section
+      let sectionHeight = 140; // Height of the background box
+      ctx.fillStyle = "#f4f4f4"; // Background color
+      ctx.fillRect(trendingX - 10, trendingY - 40, 180, sectionHeight); // Draw background box
 
       // Trending Services Section
       drawTextSection("Trending Services", trendingX, trendingY, 18);
       drawList(["1. Senior Services", "2. LA Fire Services", "3. AI Unemployment"], trendingX, trendingY + 30);
+
+      ctx.drawImage(logo, canvas.width - 120, 10, 100, 100); // Adjust size and position
+
     }
 
     // Drawing text section
@@ -103,6 +139,70 @@
       items.forEach((item, index) => {
         ctx.fillText(item, x, y + index * 20);
       });
+    }
+
+    // Function to draw a ministry circle with hover effect
+    function drawMinistry(x, y, text, id, bgcolor) {
+      // Gradient fill for a more professional button appearance
+      const gradient = ctx.createRadialGradient(x, y, 10, x, y, 60);
+      gradient.addColorStop(0, bgcolor);  // Bright blue at the center
+      gradient.addColorStop(1, "#404040");  // Darker blue at the edges
+
+      // Check if the mouse is hovering over the circle
+      const distance = Math.sqrt((mouseX - x) ** 2 + (mouseY - y) ** 2);
+      const hover = distance <= 70;
+
+      // Hover effect: increase the radius and change the shadow
+      if (hover) {
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(x, y, 80, 0, Math.PI * 2);  // Larger radius when hovered
+        ctx.fill();
+
+        // Apply a glowing shadow effect on hover
+        ctx.shadowColor = '#000';
+        ctx.shadowBlur = 15;
+        ctx.shadowOffsetX = 6;
+        ctx.shadowOffsetY = 6;
+      } else {
+        // Default appearance when not hovering
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(x, y, 70, 0, Math.PI * 2);  // Normal radius
+        ctx.fill();
+
+        // Subtle shadow for normal state
+        ctx.shadowColor = 'black';
+        ctx.shadowBlur = 10;
+        ctx.shadowOffsetX = 4;
+        ctx.shadowOffsetY = 4;
+      }
+
+      ctx.lineWidth = 4;
+      ctx.strokeStyle = "#404040";  // Dark blue for the stroke
+      ctx.stroke();
+
+      // Text styling for a more professional font
+      ctx.fillStyle = "white";
+      ctx.font = "bold 16px 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"; // A more modern font
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle"; // Vertically center the text
+      ctx.fillText(text, x, y);  // Center the text in the button
+
+      // Remove shadow after drawing to prevent it from affecting other elements
+      ctx.shadowColor = 'transparent';
+
+      // Store the circle details
+      circles.push({ x, y, radius: 70, text, id });
+    }
+
+    // Show Firework GIF overlay for 2 seconds
+    function showFirework() {
+      const fireworkOverlay = document.getElementById("fireworkOverlay");
+      fireworkOverlay.style.display = "block";
+      setTimeout(() => {
+        fireworkOverlay.style.display = "none";
+      }, 3000); // Hide after 2 seconds
     }
 
     canvas.addEventListener("click", function (event) {
@@ -135,8 +235,63 @@
             document.body.style.backgroundColor = "#FF5733";
             break;
         }
+        // Trigger the firework effect when any ministry is clicked
+        showFirework();
       }
     }
+  </script>
+
+
+  <script>
+    const bgImages = [
+      'https://imgs.search.brave.com/RdpIX76Txelz69G4TtB6XUUHd5C_BKbvFdj5Nurd0eA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMuc3F1YXJlc3Bh/Y2UtY2RuLmNvbS9j/b250ZW50L3YxLzU4/ZWFlYzYwMTVkNWRi/ZjU4Y2Q4ZGI2YS8x/NTI4ODM5MTkxMDYw/LTZETlFNVVhJSk9D/MDhENDYzTkczL3Nw/cmluZy0yNzYwMTRf/MTI4MC5qcGc',
+      'https://imgs.search.brave.com/wpolT16R7d802-DEqAorcktJXKMxx6QR3XVPVDpncdo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAyMC8w/My8zMS8xMS81OS9z/dW5yaXNlLTQ5ODcz/ODRfNjQwLmpwZw',
+      'https://images.unsplash.com/photo-1519681393784-d120267933ba'
+    ];
+
+    let currentIndex = 0;
+
+    document.getElementById("prev-bg").addEventListener("click", function () {
+      currentIndex = (currentIndex - 1 + bgImages.length) % bgImages.length;
+      document.body.style.backgroundImage = `url('${bgImages[currentIndex]}')`;
+    });
+
+      document.getElementById("next-bg").addEventListener("click", function () {
+        currentIndex = (currentIndex + 1) % bgImages.length;
+        document.body.style.backgroundImage = `url('${bgImages[currentIndex]}')`;
+      });
+
+    // setInterval(() => {
+    //   currentIndex = (currentIndex + 1) % bgImages.length;
+    //   document.body.style.backgroundImage = `url('${bgImages[currentIndex]}')`;
+    // }, 10000);
+
+    const ministries = {
+
+      "mind": 'https://images.unsplash.com/photo-1519681393784-d120267933ba',
+      "nature": 'https://imgs.search.brave.com/RdpIX76Txelz69G4TtB6XUUHd5C_BKbvFdj5Nurd0eA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMuc3F1YXJlc3Bh/Y2UtY2RuLmNvbS9j/b250ZW50L3YxLzU4/ZWFlYzYwMTVkNWRi/ZjU4Y2Q4ZGI2YS8x/NTI4ODM5MTkxMDYw/LTZETlFNVVhJSk9D/MDhENDYzTkczL3Nw/cmluZy0yNzYwMTRf/MTI4MC5qcGc',
+      "logic": 'https://imgs.search.brave.com/wpolT16R7d802-DEqAorcktJXKMxx6QR3XVPVDpncdo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAyMC8w/My8zMS8xMS81OS9z/dW5yaXNlLTQ5ODcz/ODRfNjQwLmpwZw'
+
+    };
+
+    document.getElementById("metamodeCanvas").addEventListener("click", function (event) {
+      const rect = event.target.getBoundingClientRect();
+      const mouseX = event.clientX - rect.left;
+      const mouseY = event.clientY - rect.top;
+
+      const circles = [
+        { x: window.innerWidth / 2, y: window.innerHeight * 0.3, id: "logic" },
+        { x: window.innerWidth / 2, y: window.innerHeight * 0.5, id: "nature" },
+        { x: window.innerWidth / 2, y: window.innerHeight * 0.7, id: "mind" }
+      ];
+
+      circles.forEach(circle => {
+        const distance = Math.sqrt((mouseX - circle.x) ** 2 + (mouseY - circle.y) ** 2);
+        if (distance <= 70) {
+          document.body.style.backgroundImage = `url('${ministries[circle.id]}')`;
+        }
+      });
+    });
   </script>
 </body>
 
