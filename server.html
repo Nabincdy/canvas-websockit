@@ -67,17 +67,15 @@
 
 
 
-
-
     let listItems = [
-  { text: "1. Art", x: 40, y: 60 },
-  { text: "2. Religion", x: 40, y: 80 },
-  { text: "3. Philosophy", x: 40, y: 100 },
-  { text: "4. Science", x: 40, y: 120 },
-  { text: "5. Genuine Wisdom", x: 40, y: 140 }
-];
+      { text: "1. Art", x: 40, y: 60 },
+      { text: "2. Religion", x: 40, y: 80 },
+      { text: "3. Philosophy", x: 40, y: 100 },
+      { text: "4. Science", x: 40, y: 120 },
+      { text: "5. Genuine Wisdom", x: 40, y: 140 }
+    ];
 
-canvas.addEventListener("click", function (event) {
+    canvas.addEventListener("click", function (event) {
       const rect = canvas.getBoundingClientRect();
       const mouseX = event.clientX - rect.left;
       const mouseY = event.clientY - rect.top;
@@ -93,25 +91,9 @@ canvas.addEventListener("click", function (event) {
       });
     });
 
-    // Function to handle clicks on list items
-    function handleListItemClick(text) {
-      console.log(`${text} is clicked`); // This will print the clicked item
-
-      if (text.includes("Art")) {
-        document.body.style.backgroundImage = "url('https://images.unsplash.com/photo-1519681393784-d120267933ba')";
-      } else if (text.includes("Religion")) {
-        document.body.style.backgroundImage = "url('https://imgs.search.brave.com/KPQFDng4I2wWcGwQt1UjUiUYlu3DPAzxCBgWo_Y5Nq0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pMC53/cC5jb20vcGljanVt/Ym8uY29tL3dwLWNv/bnRlbnQvdXBsb2Fk/cy9iZWF1dGlmdWwt/ZmFsbC1uYXR1cmUt/c2NlbmVyeS1mcmVl/LWltYWdlLmpwZWc_/dz02MDAmcXVhbGl0/eT04MA')";
-      } else if (text.includes("Philosophy")) {
-        document.body.style.backgroundImage = "url('https://imgs.search.brave.com/XijCjcWR5uclHjvs3Qhnqs7EYAEtJxHPwdg-PqZIlV0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pMC53/cC5jb20vcGljanVt/Ym8uY29tL3dwLWNv/bnRlbnQvdXBsb2Fk/cy9yb21hbnRpYy10/cm9waWNhbC1iZWFj/aC13aXRoLXZpbGxh/LWFuZC1wYWxtcy1k/dXJpbmctYmVhdXRp/ZnVsLXN1bnNldC1m/cmVlLXBob3RvLmpw/Zz93PTYwMCZxdWFs/aXR5PTgw')";
-      } else if (text.includes("Science")) {
-        document.body.style.backgroundImage = "url('https://imgs.search.brave.com/ptCS5ZaCZFACSw6TGiRinWgKFqlfQFxk_tP9o2DBKRo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTQ0/MDUwMzU1OS9waG90/by9mb3Jlc3Qtc3Vu/bGlnaHQuanBnP3M9/NjEyeDYxMiZ3PTAm/az0yMCZjPXBaTm9O/SF9EdG8tZTlpZ2NF/UGYzbWNZZUFhdUNm/cDNTN2t5R25CUWRz/VXc9')";
-      } else if (text.includes("Genuine Wisdom")) {
-        document.body.style.backgroundImage = "url('https://imgs.search.brave.com/r2ctSZbLxnhJ1UfRmMFKe-ClOqR5eO2mRmRzFHJCEj4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pMC53/cC5jb20vcGljanVt/Ym8uY29tL3dwLWNv/bnRlbnQvdXBsb2Fk/cy9tYWdpY2FsLXNw/cmluZy1mb3Jlc3Qt/c2NlbmVyeS1kdXJp/bmctbW9ybmluZy1i/cmVlemUtZnJlZS1w/aG90by5qcGc_dz02/MDAmcXVhbGl0eT04/MA')";
-      }
-    }
 
 
-    
+
 
     // Resize canvas to fit the screen size
     function resizeCanvas() {
@@ -239,18 +221,18 @@ canvas.addEventListener("click", function (event) {
       // ctx.lineWidth = 4;
       ctx.strokeStyle = "#404040";  // Dark blue for the stroke
       ctx.stroke();
-// Text styling for a more professional font
-if (text === "Ministry Of Logic") {
-  ctx.fillStyle = "#f0f0f0";  // Light gray for Logic
-  ctx.font = "bold 18px 'Courier New', sans-serif";  // Professional font for Logic
-} else if (text === "Ministry Of Nature") {
-  ctx.fillStyle = "#4CAF50";  // Green for Nature
-  ctx.font = "bold 18px 'Poppins', 'Merriweather', sans-serif";  // Professional font for Nature
-} else if (text === "Ministry Of Mind") {
-  ctx.fillStyle = "#FF5733";  // Red for Mind
-  ctx.font = "bold 18px 'Fira Code', 'Pacifico', monospace";  // Professional font for Mind
-}
-ctx.textAlign = "center";  // Align text to the center
+      // Text styling for a more professional font
+      if (text === "Ministry Of Logic") {
+        ctx.fillStyle = "#f0f0f0";  // Light gray for Logic
+        ctx.font = "bold 18px 'Courier New', sans-serif";  // Professional font for Logic
+      } else if (text === "Ministry Of Nature") {
+        ctx.fillStyle = "#4CAF50";  // Green for Nature
+        ctx.font = "bold 18px 'Poppins', 'Merriweather', sans-serif";  // Professional font for Nature
+      } else if (text === "Ministry Of Mind") {
+        ctx.fillStyle = "#FF5733";  // Red for Mind
+        ctx.font = "bold 18px 'Fira Code', 'Pacifico', monospace";  // Professional font for Mind
+      }
+      ctx.textAlign = "center";  // Align text to the center
 
       ctx.textBaseline = "middle"; // Vertically center the text
       ctx.fillText(text, x, y);  // Center the text in the button
@@ -305,32 +287,79 @@ ctx.textAlign = "center";  // Align text to the center
         showFirework();
       }
     }
-  </script>
 
+    let bgImages = [
+  'https://images.unsplash.com/photo-1519681393784-d120267933ba',
+  'https://imgs.search.brave.com/r2ctSZbLxnhJ1UfRmMFKe-ClOqR5eO2mRmRzFHJCEj4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pMC53/cC5jb20vcGljanVt/Ym8uY29tL3dwLWNv/bnRlbnQvdXBsb2Fk/cy9tYWdpY2FsLXNw/cmluZy1mb3Jlc3Qt/c2NlbmVyeS1kdXJp/bmctbW9ybmluZy1i/cmVlemUtZnJlZS1w/aG90by5qcGc_dz02/MDAmcXVhbGl0eT04/MA',
+  'https://imgs.search.brave.com/k57986ar46usMuVDP6_IM6sbWf7_g7qlOIEqg3qd-68/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzA1LzI4Lzg2LzY2/LzM2MF9GXzUyODg2/NjYwMl9haVZ3bk9u/a29vVHJxbzNNZ2lj/Q2Y4M1NWVnp0MUdu/ZC5qcGc'
+]; // Default to Art images
+    let currentIndex = 0; // Tracks current image index
 
-  <script>
-    const bgImages = [
-      'https://imgs.search.brave.com/RdpIX76Txelz69G4TtB6XUUHd5C_BKbvFdj5Nurd0eA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMuc3F1YXJlc3Bh/Y2UtY2RuLmNvbS9j/b250ZW50L3YxLzU4/ZWFlYzYwMTVkNWRi/ZjU4Y2Q4ZGI2YS8x/NTI4ODM5MTkxMDYw/LTZETlFNVVhJSk9D/MDhENDYzTkczL3Nw/cmluZy0yNzYwMTRf/MTI4MC5qcGc',
-      'https://imgs.search.brave.com/wpolT16R7d802-DEqAorcktJXKMxx6QR3XVPVDpncdo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAyMC8w/My8zMS8xMS81OS9z/dW5yaXNlLTQ5ODcz/ODRfNjQwLmpwZw',
-      'https://images.unsplash.com/photo-1519681393784-d120267933ba'
-    ];
+    function handleListItemClick(text) {
+      console.log(`${text} is clicked`);
 
-    let currentIndex = 0;
+      if (text.includes("Art")) {
+        bgImages = [
+          'https://images.unsplash.com/photo-1519681393784-d120267933ba',
+          'https://imgs.search.brave.com/r2ctSZbLxnhJ1UfRmMFKe-ClOqR5eO2mRmRzFHJCEj4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pMC53/cC5jb20vcGljanVt/Ym8uY29tL3dwLWNv/bnRlbnQvdXBsb2Fk/cy9tYWdpY2FsLXNw/cmluZy1mb3Jlc3Qt/c2NlbmVyeS1kdXJp/bmctbW9ybmluZy1i/cmVlemUtZnJlZS1w/aG90by5qcGc_dz02/MDAmcXVhbGl0eT04/MA',
+          'https://imgs.search.brave.com/k57986ar46usMuVDP6_IM6sbWf7_g7qlOIEqg3qd-68/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzA1LzI4Lzg2LzY2/LzM2MF9GXzUyODg2/NjYwMl9haVZ3bk9u/a29vVHJxbzNNZ2lj/Q2Y4M1NWVnp0MUdu/ZC5qcGc'
+        ];
+      } else if (text.includes("Religion")) {
+        bgImages = [
+          'https://imgs.search.brave.com/Cfyif0hiajI5ZUsZ0E-Qn2oagY-eSXaM7VaBDApEBu4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJzLmNvbS9p/bWFnZXMvZmVhdHVy/ZWQvc3Bpcml0dWFs/LXBpY3R1cmVzLWdy/MHhub3F3dmkzcmlo/YTIuanBn',
+          'https://imgs.search.brave.com/Y14PYK4rGZ3W4Il3ZTyCAW-dzr4YdCpnSarUgWT6irI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzAzLzExLzMwLzQ4/LzM2MF9GXzMxMTMw/NDg0MV80QTByQzdF/Mk9GY09IRG9uNk9i/aFpIaXdjbzhEdXlG/by5qcGc',
+          'https://imgs.search.brave.com/9gTs3Li_jdR96kn4fWUW6Q2Szv77cpayfUCMSUx0jHU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAyMi8x/MS8yOS8xNS8xOC9z/dW5zZXQtNzYyNDcy/MF82NDAuanBn'];
+      } else if (text.includes("Philosophy")) {
+        bgImages = [
+          'https://imgs.search.brave.com/ZNft9cQfnqhVEOt2HAlc4hxl6wU4ofK7DCx5anxMbBs/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAxNS8w/NS8wNy8xNS80OC9i/dXN0b3MtNzU2NjIw/XzY0MC5qcGc',
+          'https://imgs.search.brave.com/5o5vVSE-nuWoHEGLaA8N257-V3kj5WGvw6rCCgUnFFU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvOTE4/Mzk5NDUvcGhvdG8v/cHRvbGVteS1hbmQt/c3RyYWJvLWluLXRo/ZS1zY2hvb2wtb2Yt/YXRoZW5zLWJ5LXJh/cGhhZWwuanBnP3M9/NjEyeDYxMiZ3PTAm/az0yMCZjPUxiaFI2/bHN3Wkd6TV9NUGE0/c29XWktGR2FITVR1/eVdwSHNqbkVqcXFl/WlU9',
+          'https://imgs.search.brave.com/ixmkmnUoQWRqlv93yBvbVkzg3hRRB8G3lT6jQz8MZaY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzA5Lzg3LzQ5Lzgz/LzM2MF9GXzk4NzQ5/ODMwMV9WUjNHbDNv/dHJRdTcwMXpTZnJ6/cXZETllhS0o0NzNU/aC5qcGc'];
+      } else if (text.includes("Science")) {
+        bgImages = [
+          'https://imgs.search.brave.com/4qJbiBg61BEfReiSIg4Q6deic5E4l19U2kyeFLLSdxY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNjE2/OTAyNzY2L3Bob3Rv/L2RlZGljYXRlZC10/by1zb2Z0d2FyZS1k/ZXZlbG9wbWVudC5q/cGc_cz02MTJ4NjEy/Jnc9MCZrPTIwJmM9/RGJlUVpoYTdFRE94/U0NLNDlJT3pQNkRh/VkphQkVsekZJdE9W/SktRU0Rlaz0',
+          'https://imgs.search.brave.com/sL2X-cMtywiWF6Bbd6dBtqyGaklx3MAgWEsgd2Ql5ZQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNTAw/MzIzODk0L3Bob3Rv/L3R3by1zY2llbnRp/c3QtdXNpbmctZGln/aXRhbC10YWJsZXQt/aW4tbGFib3JhdG9y/eS5qcGc_cz02MTJ4/NjEyJnc9MCZrPTIw/JmM9ZWtLcGdzdG1l/cHdXYnlLa0d2bzhm/Tmt0dkp1aDQtcVRS/QzVtUzZlVHlPND0',
+          'https://imgs.search.brave.com/pVrDD4DuOnyXrTLW5_7NBjFeg3W2eWETRXqrA4X9Jbc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/Y3JlYXRlLnZpc3Rh/LmNvbS9hcGkvbWVk/aWEvc21hbGwvMTY3/MDE0MzEwL3N0b2Nr/LXBob3RvLXNjaWVu/Y2UtdGVjaG5vbG9n/eS1jb25jZXB0LWFy/dA'];
+      } else if (text.includes("Genuine Wisdom")) {
+        bgImages = [
+          'https://imgs.search.brave.com/ERy6KY5gABNeidWrAtky01Vq7sB3l7e2pnCWsLzkC1Y/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzExLzI2LzI2Lzcy/LzM2MF9GXzExMjYy/NjcyOTBfMmloYVBx/YUNXWmpkUGVuZG4z/OVBQZDk3UndLQmhh/b0ouanBn',
+          'https://imgs.search.brave.com/lz98xW5JYgwlMrq7h3ZCokgTamSOjIO4RQDvvp1azqo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pMC53/cC5jb20vcGljanVt/Ym8uY29tL3dwLWNv/bnRlbnQvdXBsb2Fk/cy9idWRkaGEtZnJl/ZS1pbWFnZS1mcmVl/LXBob3RvLmpwZWc_/dz02MDAmcXVhbGl0/eT04MA',
+          'https://imgs.search.brave.com/TQOi7Hr8HdvdZJmYP40kTMyHnYtp2ejFbKf_28pCmfI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMuc3F1YXJlc3Bh/Y2UtY2RuLmNvbS9j/b250ZW50L3YxLzVm/M2JmNzM1NTUyYjU5/MDI4NTg4Mjk3Ni8x/NjAwODA0NjM4NTgz/LThCVkxYMkhKOVhF/OUFLV1FJSDY4L2Nh/c2NhZGlhX2ZlYXR1/cmVfaW1hZ2Vfd2lz/ZG9tX3RoZW9yeV90/b19wcmFjdGljZS5q/cGc'];
+      }
 
+      // Reset index to the first image in the new category
+      currentIndex = 0;
+
+      // Set first image as background if available
+      if (bgImages.length > 0) {
+        updateBackground();
+      }
+    }
+
+    // Function to update the background image
+    function updateBackground() {
+      if (bgImages.length > 0) {
+        document.body.style.backgroundImage = `url('${bgImages[currentIndex]}')`;
+        document.body.style.backgroundSize = "cover";
+        document.body.style.backgroundPosition = "center";
+      }
+    }
+
+    // Previous Button Click Event
     document.getElementById("prev-bg").addEventListener("click", function () {
-      currentIndex = (currentIndex - 1 + bgImages.length) % bgImages.length;
-      document.body.style.backgroundImage = `url('${bgImages[currentIndex]}')`;
+      if (bgImages.length > 0) {
+        currentIndex = (currentIndex - 1 + bgImages.length) % bgImages.length;
+        updateBackground();
+      }
     });
 
+    // Next Button Click Event
     document.getElementById("next-bg").addEventListener("click", function () {
-      currentIndex = (currentIndex + 1) % bgImages.length;
-      document.body.style.backgroundImage = `url('${bgImages[currentIndex]}')`;
+      if (bgImages.length > 0) {
+        currentIndex = (currentIndex + 1) % bgImages.length;
+        updateBackground();
+      }
     });
 
-    // setInterval(() => {
-    //   currentIndex =s (currentIndex + 1) % bgImages.length;
-    //   document.body.style.backgroundImage = `url('${bgImages[currentIndex]}')`;
-    // }, 2000);
 
     const ministries = {
 
