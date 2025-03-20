@@ -5,6 +5,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Metamode Selector</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+
+
 </head>
 <style>
   * {
@@ -41,7 +47,7 @@
   <!-- Firework GIF overlay -->
   <div class="firework-overlay" id="fireworkOverlay"
     style="position: absolute; top: 30%; left: 50%; transform: translate(-50%, -50%); display: none; z-index: 1000; background-repeat: no-repeat;">
-    <img src="https://cliply.co/wp-content/uploads/2021/09/CLIPLY_372109170_FREE_FIREWORKS_400.gif" alt="Firework"
+    <img src="https://i.pinimg.com/originals/60/53/ee/6053eea2252d679c884989db76ae8410.gif" alt="Firework"
       style="width: 500px;" />
   </div>
 
@@ -54,6 +60,58 @@
     let activeCircle = null;
     let mouseX = 0;
     let mouseY = 0;
+
+
+
+
+
+
+
+
+
+    let listItems = [
+  { text: "1. Art", x: 40, y: 60 },
+  { text: "2. Religion", x: 40, y: 80 },
+  { text: "3. Philosophy", x: 40, y: 100 },
+  { text: "4. Science", x: 40, y: 120 },
+  { text: "5. Genuine Wisdom", x: 40, y: 140 }
+];
+
+canvas.addEventListener("click", function (event) {
+      const rect = canvas.getBoundingClientRect();
+      const mouseX = event.clientX - rect.left;
+      const mouseY = event.clientY - rect.top;
+
+      listItems.forEach(item => {
+        const textWidth = ctx.measureText(item.text).width;
+
+        // Check if click is inside the text bounds
+        if (mouseX >= item.x && mouseX <= item.x + textWidth &&
+          mouseY >= item.y - 10 && mouseY <= item.y + 5) {
+          handleListItemClick(item.text);
+        }
+      });
+    });
+
+    // Function to handle clicks on list items
+    function handleListItemClick(text) {
+      console.log(`${text} is clicked`); // This will print the clicked item
+
+      if (text.includes("Art")) {
+        document.body.style.backgroundImage = "url('https://images.unsplash.com/photo-1519681393784-d120267933ba')";
+      } else if (text.includes("Religion")) {
+        document.body.style.backgroundImage = "url('https://imgs.search.brave.com/KPQFDng4I2wWcGwQt1UjUiUYlu3DPAzxCBgWo_Y5Nq0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pMC53/cC5jb20vcGljanVt/Ym8uY29tL3dwLWNv/bnRlbnQvdXBsb2Fk/cy9iZWF1dGlmdWwt/ZmFsbC1uYXR1cmUt/c2NlbmVyeS1mcmVl/LWltYWdlLmpwZWc_/dz02MDAmcXVhbGl0/eT04MA')";
+      } else if (text.includes("Philosophy")) {
+        document.body.style.backgroundImage = "url('https://imgs.search.brave.com/XijCjcWR5uclHjvs3Qhnqs7EYAEtJxHPwdg-PqZIlV0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pMC53/cC5jb20vcGljanVt/Ym8uY29tL3dwLWNv/bnRlbnQvdXBsb2Fk/cy9yb21hbnRpYy10/cm9waWNhbC1iZWFj/aC13aXRoLXZpbGxh/LWFuZC1wYWxtcy1k/dXJpbmctYmVhdXRp/ZnVsLXN1bnNldC1m/cmVlLXBob3RvLmpw/Zz93PTYwMCZxdWFs/aXR5PTgw')";
+      } else if (text.includes("Science")) {
+        document.body.style.backgroundImage = "url('https://imgs.search.brave.com/ptCS5ZaCZFACSw6TGiRinWgKFqlfQFxk_tP9o2DBKRo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTQ0/MDUwMzU1OS9waG90/by9mb3Jlc3Qtc3Vu/bGlnaHQuanBnP3M9/NjEyeDYxMiZ3PTAm/az0yMCZjPXBaTm9O/SF9EdG8tZTlpZ2NF/UGYzbWNZZUFhdUNm/cDNTN2t5R25CUWRz/VXc9')";
+      } else if (text.includes("Genuine Wisdom")) {
+        document.body.style.backgroundImage = "url('https://imgs.search.brave.com/r2ctSZbLxnhJ1UfRmMFKe-ClOqR5eO2mRmRzFHJCEj4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pMC53/cC5jb20vcGljanVt/Ym8uY29tL3dwLWNv/bnRlbnQvdXBsb2Fk/cy9tYWdpY2FsLXNw/cmluZy1mb3Jlc3Qt/c2NlbmVyeS1kdXJp/bmctbW9ybmluZy1i/cmVlemUtZnJlZS1w/aG90by5qcGc_dz02/MDAmcXVhbGl0eT04/MA')";
+      }
+    }
+
+
+    
 
     // Resize canvas to fit the screen size
     function resizeCanvas() {
@@ -178,14 +236,22 @@
         ctx.shadowOffsetY = 4;
       }
 
-      ctx.lineWidth = 4;
+      // ctx.lineWidth = 4;
       ctx.strokeStyle = "#404040";  // Dark blue for the stroke
       ctx.stroke();
+// Text styling for a more professional font
+if (text === "Ministry Of Logic") {
+  ctx.fillStyle = "#f0f0f0";  // Light gray for Logic
+  ctx.font = "bold 18px 'Courier New', sans-serif";  // Professional font for Logic
+} else if (text === "Ministry Of Nature") {
+  ctx.fillStyle = "#4CAF50";  // Green for Nature
+  ctx.font = "bold 18px 'Poppins', 'Merriweather', sans-serif";  // Professional font for Nature
+} else if (text === "Ministry Of Mind") {
+  ctx.fillStyle = "#FF5733";  // Red for Mind
+  ctx.font = "bold 18px 'Fira Code', 'Pacifico', monospace";  // Professional font for Mind
+}
+ctx.textAlign = "center";  // Align text to the center
 
-      // Text styling for a more professional font
-      ctx.fillStyle = "white";
-      ctx.font = "bold 16px 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"; // A more modern font
-      ctx.textAlign = "center";
       ctx.textBaseline = "middle"; // Vertically center the text
       ctx.fillText(text, x, y);  // Center the text in the button
 
@@ -202,7 +268,7 @@
       fireworkOverlay.style.display = "block";
       setTimeout(() => {
         fireworkOverlay.style.display = "none";
-      }, 3000); // Hide after 2 seconds
+      }, 1000); // Hide after 2 seconds
     }
 
     canvas.addEventListener("click", function (event) {
@@ -256,15 +322,15 @@
       document.body.style.backgroundImage = `url('${bgImages[currentIndex]}')`;
     });
 
-      document.getElementById("next-bg").addEventListener("click", function () {
-        currentIndex = (currentIndex + 1) % bgImages.length;
-        document.body.style.backgroundImage = `url('${bgImages[currentIndex]}')`;
-      });
+    document.getElementById("next-bg").addEventListener("click", function () {
+      currentIndex = (currentIndex + 1) % bgImages.length;
+      document.body.style.backgroundImage = `url('${bgImages[currentIndex]}')`;
+    });
 
     // setInterval(() => {
-    //   currentIndex = (currentIndex + 1) % bgImages.length;
+    //   currentIndex =s (currentIndex + 1) % bgImages.length;
     //   document.body.style.backgroundImage = `url('${bgImages[currentIndex]}')`;
-    // }, 10000);
+    // }, 2000);
 
     const ministries = {
 
