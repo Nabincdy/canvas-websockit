@@ -289,10 +289,19 @@
     }
 
     let bgImages = [
-  'https://images.unsplash.com/photo-1519681393784-d120267933ba',
-  'https://imgs.search.brave.com/r2ctSZbLxnhJ1UfRmMFKe-ClOqR5eO2mRmRzFHJCEj4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pMC53/cC5jb20vcGljanVt/Ym8uY29tL3dwLWNv/bnRlbnQvdXBsb2Fk/cy9tYWdpY2FsLXNw/cmluZy1mb3Jlc3Qt/c2NlbmVyeS1kdXJp/bmctbW9ybmluZy1i/cmVlemUtZnJlZS1w/aG90by5qcGc_dz02/MDAmcXVhbGl0eT04/MA',
-  'https://imgs.search.brave.com/k57986ar46usMuVDP6_IM6sbWf7_g7qlOIEqg3qd-68/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzA1LzI4Lzg2LzY2/LzM2MF9GXzUyODg2/NjYwMl9haVZ3bk9u/a29vVHJxbzNNZ2lj/Q2Y4M1NWVnp0MUdu/ZC5qcGc'
-]; // Default to Art images
+      'https://images.unsplash.com/photo-1519681393784-d120267933ba',
+      'https://imgs.search.brave.com/r2ctSZbLxnhJ1UfRmMFKe-ClOqR5eO2mRmRzFHJCEj4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pMC53/cC5jb20vcGljanVt/Ym8uY29tL3dwLWNv/bnRlbnQvdXBsb2Fk/cy9tYWdpY2FsLXNw/cmluZy1mb3Jlc3Qt/c2NlbmVyeS1kdXJp/bmctbW9ybmluZy1i/cmVlemUtZnJlZS1w/aG90by5qcGc_dz02/MDAmcXVhbGl0eT04/MA',
+      'https://imgs.search.brave.com/k57986ar46usMuVDP6_IM6sbWf7_g7qlOIEqg3qd-68/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzA1LzI4Lzg2LzY2/LzM2MF9GXzUyODg2/NjYwMl9haVZ3bk9u/a29vVHJxbzNNZ2lj/Q2Y4M1NWVnp0MUdu/ZC5qcGc'
+    ]; // Default to Art images
+
+
+    const ministries = {
+      "mind": 'https://images.unsplash.com/photo-1519681393784-d120267933ba',
+      "nature": 'https://imgs.search.brave.com/RdpIX76Txelz69G4TtB6XUUHd5C_BKbvFdj5Nurd0eA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMuc3F1YXJlc3Bh/Y2UtY2RuLmNvbS9j/b250ZW50L3YxLzU4/ZWFlYzYwMTVkNWRi/ZjU4Y2Q4ZGI2YS8x/NTI4ODM5MTkxMDYw/LTZETlFNVVhJSk9D/MDhENDYzTkczL3Nw/cmluZy0yNzYwMTRf/MTI4MC5qcGc',
+      "logic": 'https://imgs.search.brave.com/wpolT16R7d802-DEqAorcktJXKMxx6QR3XVPVDpncdo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAyMC8w/My8zMS8xMS81OS9z/dW5yaXNlLTQ5ODcz/ODRfNjQwLmpwZw'
+    };
+
+
     let currentIndex = 0; // Tracks current image index
 
     function handleListItemClick(text) {
@@ -304,26 +313,62 @@
           'https://imgs.search.brave.com/r2ctSZbLxnhJ1UfRmMFKe-ClOqR5eO2mRmRzFHJCEj4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pMC53/cC5jb20vcGljanVt/Ym8uY29tL3dwLWNv/bnRlbnQvdXBsb2Fk/cy9tYWdpY2FsLXNw/cmluZy1mb3Jlc3Qt/c2NlbmVyeS1kdXJp/bmctbW9ybmluZy1i/cmVlemUtZnJlZS1w/aG90by5qcGc_dz02/MDAmcXVhbGl0eT04/MA',
           'https://imgs.search.brave.com/k57986ar46usMuVDP6_IM6sbWf7_g7qlOIEqg3qd-68/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzA1LzI4Lzg2LzY2/LzM2MF9GXzUyODg2/NjYwMl9haVZ3bk9u/a29vVHJxbzNNZ2lj/Q2Y4M1NWVnp0MUdu/ZC5qcGc'
         ];
+
+        // const ministries = {
+        //   "mind": 'https://images.unsplash.com/photo-1519681393784-d120267933ba',
+        //   "nature": 'https://imgs.search.brave.com/RdpIX76Txelz69G4TtB6XUUHd5C_BKbvFdj5Nurd0eA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMuc3F1YXJlc3Bh/Y2UtY2RuLmNvbS9j/b250ZW50L3YxLzU4/ZWFlYzYwMTVkNWRi/ZjU4Y2Q4ZGI2YS8x/NTI4ODM5MTkxMDYw/LTZETlFNVVhJSk9D/MDhENDYzTkczL3Nw/cmluZy0yNzYwMTRf/MTI4MC5qcGc',
+        //   "logic": 'https://imgs.search.brave.com/wpolT16R7d802-DEqAorcktJXKMxx6QR3XVPVDpncdo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAyMC8w/My8zMS8xMS81OS9z/dW5yaXNlLTQ5ODcz/ODRfNjQwLmpwZw'
+        // };
+
       } else if (text.includes("Religion")) {
         bgImages = [
           'https://imgs.search.brave.com/Cfyif0hiajI5ZUsZ0E-Qn2oagY-eSXaM7VaBDApEBu4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJzLmNvbS9p/bWFnZXMvZmVhdHVy/ZWQvc3Bpcml0dWFs/LXBpY3R1cmVzLWdy/MHhub3F3dmkzcmlo/YTIuanBn',
           'https://imgs.search.brave.com/Y14PYK4rGZ3W4Il3ZTyCAW-dzr4YdCpnSarUgWT6irI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzAzLzExLzMwLzQ4/LzM2MF9GXzMxMTMw/NDg0MV80QTByQzdF/Mk9GY09IRG9uNk9i/aFpIaXdjbzhEdXlG/by5qcGc',
           'https://imgs.search.brave.com/9gTs3Li_jdR96kn4fWUW6Q2Szv77cpayfUCMSUx0jHU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAyMi8x/MS8yOS8xNS8xOC9z/dW5zZXQtNzYyNDcy/MF82NDAuanBn'];
+
+
+        // ministries = {
+        //   "mind": 'https://imgs.search.brave.com/Cfyif0hiajI5ZUsZ0E-Qn2oagY-eSXaM7VaBDApEBu4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJzLmNvbS9p/bWFnZXMvZmVhdHVy/ZWQvc3Bpcml0dWFs/LXBpY3R1cmVzLWdy/MHhub3F3dmkzcmlo/YTIuanBn',
+        //   "nature": 'https://imgs.search.brave.com/Y14PYK4rGZ3W4Il3ZTyCAW-dzr4YdCpnSarUgWT6irI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzAzLzExLzMwLzQ4/LzM2MF9GXzMxMTMw/NDg0MV80QTByQzdF/Mk9GY09IRG9uNk9i/aFpIaXdjbzhEdXlG/by5qcGc',
+        //   "logic": 'https://imgs.search.brave.com/9gTs3Li_jdR96kn4fWUW6Q2Szv77cpayfUCMSUx0jHU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAyMi8x/MS8yOS8xNS8xOC9z/dW5zZXQtNzYyNDcy/MF82NDAuanBn'
+        // };
+
       } else if (text.includes("Philosophy")) {
         bgImages = [
           'https://imgs.search.brave.com/ZNft9cQfnqhVEOt2HAlc4hxl6wU4ofK7DCx5anxMbBs/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAxNS8w/NS8wNy8xNS80OC9i/dXN0b3MtNzU2NjIw/XzY0MC5qcGc',
           'https://imgs.search.brave.com/5o5vVSE-nuWoHEGLaA8N257-V3kj5WGvw6rCCgUnFFU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvOTE4/Mzk5NDUvcGhvdG8v/cHRvbGVteS1hbmQt/c3RyYWJvLWluLXRo/ZS1zY2hvb2wtb2Yt/YXRoZW5zLWJ5LXJh/cGhhZWwuanBnP3M9/NjEyeDYxMiZ3PTAm/az0yMCZjPUxiaFI2/bHN3Wkd6TV9NUGE0/c29XWktGR2FITVR1/eVdwSHNqbkVqcXFl/WlU9',
           'https://imgs.search.brave.com/ixmkmnUoQWRqlv93yBvbVkzg3hRRB8G3lT6jQz8MZaY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzA5Lzg3LzQ5Lzgz/LzM2MF9GXzk4NzQ5/ODMwMV9WUjNHbDNv/dHJRdTcwMXpTZnJ6/cXZETllhS0o0NzNU/aC5qcGc'];
+
+        // const ministries = {
+        //   "mind": 'https://images.unsplash.com/photo-1519681393784-d120267933ba',
+        //   "nature": 'https://imgs.search.brave.com/RdpIX76Txelz69G4TtB6XUUHd5C_BKbvFdj5Nurd0eA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMuc3F1YXJlc3Bh/Y2UtY2RuLmNvbS9j/b250ZW50L3YxLzU4/ZWFlYzYwMTVkNWRi/ZjU4Y2Q4ZGI2YS8x/NTI4ODM5MTkxMDYw/LTZETlFNVVhJSk9D/MDhENDYzTkczL3Nw/cmluZy0yNzYwMTRf/MTI4MC5qcGc',
+        //   "logic": 'https://imgs.search.brave.com/wpolT16R7d802-DEqAorcktJXKMxx6QR3XVPVDpncdo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAyMC8w/My8zMS8xMS81OS9z/dW5yaXNlLTQ5ODcz/ODRfNjQwLmpwZw'
+        // };
+
       } else if (text.includes("Science")) {
         bgImages = [
           'https://imgs.search.brave.com/4qJbiBg61BEfReiSIg4Q6deic5E4l19U2kyeFLLSdxY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNjE2/OTAyNzY2L3Bob3Rv/L2RlZGljYXRlZC10/by1zb2Z0d2FyZS1k/ZXZlbG9wbWVudC5q/cGc_cz02MTJ4NjEy/Jnc9MCZrPTIwJmM9/RGJlUVpoYTdFRE94/U0NLNDlJT3pQNkRh/VkphQkVsekZJdE9W/SktRU0Rlaz0',
           'https://imgs.search.brave.com/sL2X-cMtywiWF6Bbd6dBtqyGaklx3MAgWEsgd2Ql5ZQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNTAw/MzIzODk0L3Bob3Rv/L3R3by1zY2llbnRp/c3QtdXNpbmctZGln/aXRhbC10YWJsZXQt/aW4tbGFib3JhdG9y/eS5qcGc_cz02MTJ4/NjEyJnc9MCZrPTIw/JmM9ZWtLcGdzdG1l/cHdXYnlLa0d2bzhm/Tmt0dkp1aDQtcVRS/QzVtUzZlVHlPND0',
           'https://imgs.search.brave.com/pVrDD4DuOnyXrTLW5_7NBjFeg3W2eWETRXqrA4X9Jbc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/Y3JlYXRlLnZpc3Rh/LmNvbS9hcGkvbWVk/aWEvc21hbGwvMTY3/MDE0MzEwL3N0b2Nr/LXBob3RvLXNjaWVu/Y2UtdGVjaG5vbG9n/eS1jb25jZXB0LWFy/dA'];
+
+        const ministries = {
+          "mind": 'https://images.unsplash.com/photo-1519681393784-d120267933ba',
+          "nature": 'https://imgs.search.brave.com/RdpIX76Txelz69G4TtB6XUUHd5C_BKbvFdj5Nurd0eA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMuc3F1YXJlc3Bh/Y2UtY2RuLmNvbS9j/b250ZW50L3YxLzU4/ZWFlYzYwMTVkNWRi/ZjU4Y2Q4ZGI2YS8x/NTI4ODM5MTkxMDYw/LTZETlFNVVhJSk9D/MDhENDYzTkczL3Nw/cmluZy0yNzYwMTRf/MTI4MC5qcGc',
+          "logic": 'https://imgs.search.brave.com/wpolT16R7d802-DEqAorcktJXKMxx6QR3XVPVDpncdo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAyMC8w/My8zMS8xMS81OS9z/dW5yaXNlLTQ5ODcz/ODRfNjQwLmpwZw'
+        };
+
       } else if (text.includes("Genuine Wisdom")) {
         bgImages = [
           'https://imgs.search.brave.com/ERy6KY5gABNeidWrAtky01Vq7sB3l7e2pnCWsLzkC1Y/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzExLzI2LzI2Lzcy/LzM2MF9GXzExMjYy/NjcyOTBfMmloYVBx/YUNXWmpkUGVuZG4z/OVBQZDk3UndLQmhh/b0ouanBn',
           'https://imgs.search.brave.com/lz98xW5JYgwlMrq7h3ZCokgTamSOjIO4RQDvvp1azqo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pMC53/cC5jb20vcGljanVt/Ym8uY29tL3dwLWNv/bnRlbnQvdXBsb2Fk/cy9idWRkaGEtZnJl/ZS1pbWFnZS1mcmVl/LXBob3RvLmpwZWc_/dz02MDAmcXVhbGl0/eT04MA',
           'https://imgs.search.brave.com/TQOi7Hr8HdvdZJmYP40kTMyHnYtp2ejFbKf_28pCmfI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMuc3F1YXJlc3Bh/Y2UtY2RuLmNvbS9j/b250ZW50L3YxLzVm/M2JmNzM1NTUyYjU5/MDI4NTg4Mjk3Ni8x/NjAwODA0NjM4NTgz/LThCVkxYMkhKOVhF/OUFLV1FJSDY4L2Nh/c2NhZGlhX2ZlYXR1/cmVfaW1hZ2Vfd2lz/ZG9tX3RoZW9yeV90/b19wcmFjdGljZS5q/cGc'];
+
+        const ministries = {
+          "mind": 'https://images.unsplash.com/photo-1519681393784-d120267933ba',
+          "nature": 'https://imgs.search.brave.com/RdpIX76Txelz69G4TtB6XUUHd5C_BKbvFdj5Nurd0eA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMuc3F1YXJlc3Bh/Y2UtY2RuLmNvbS9j/b250ZW50L3YxLzU4/ZWFlYzYwMTVkNWRi/ZjU4Y2Q4ZGI2YS8x/NTI4ODM5MTkxMDYw/LTZETlFNVVhJSk9D/MDhENDYzTkczL3Nw/cmluZy0yNzYwMTRf/MTI4MC5qcGc',
+          "logic": 'https://imgs.search.brave.com/wpolT16R7d802-DEqAorcktJXKMxx6QR3XVPVDpncdo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAyMC8w/My8zMS8xMS81OS9z/dW5yaXNlLTQ5ODcz/ODRfNjQwLmpwZw'
+        };
+
       }
 
       // Reset index to the first image in the new category
@@ -361,13 +406,11 @@
     });
 
 
-    const ministries = {
-
-      "mind": 'https://images.unsplash.com/photo-1519681393784-d120267933ba',
-      "nature": 'https://imgs.search.brave.com/RdpIX76Txelz69G4TtB6XUUHd5C_BKbvFdj5Nurd0eA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMuc3F1YXJlc3Bh/Y2UtY2RuLmNvbS9j/b250ZW50L3YxLzU4/ZWFlYzYwMTVkNWRi/ZjU4Y2Q4ZGI2YS8x/NTI4ODM5MTkxMDYw/LTZETlFNVVhJSk9D/MDhENDYzTkczL3Nw/cmluZy0yNzYwMTRf/MTI4MC5qcGc',
-      "logic": 'https://imgs.search.brave.com/wpolT16R7d802-DEqAorcktJXKMxx6QR3XVPVDpncdo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAyMC8w/My8zMS8xMS81OS9z/dW5yaXNlLTQ5ODcz/ODRfNjQwLmpwZw'
-
-    };
+    // const ministries = {
+    //   "mind": 'https://images.unsplash.com/photo-1519681393784-d120267933ba',
+    //   "nature": 'https://imgs.search.brave.com/RdpIX76Txelz69G4TtB6XUUHd5C_BKbvFdj5Nurd0eA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMuc3F1YXJlc3Bh/Y2UtY2RuLmNvbS9j/b250ZW50L3YxLzU4/ZWFlYzYwMTVkNWRi/ZjU4Y2Q4ZGI2YS8x/NTI4ODM5MTkxMDYw/LTZETlFNVVhJSk9D/MDhENDYzTkczL3Nw/cmluZy0yNzYwMTRf/MTI4MC5qcGc',
+    //   "logic": 'https://imgs.search.brave.com/wpolT16R7d802-DEqAorcktJXKMxx6QR3XVPVDpncdo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAyMC8w/My8zMS8xMS81OS9z/dW5yaXNlLTQ5ODcz/ODRfNjQwLmpwZw'
+    // };
 
     document.getElementById("metamodeCanvas").addEventListener("click", function (event) {
       const rect = event.target.getBoundingClientRect();
